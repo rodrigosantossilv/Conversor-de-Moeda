@@ -1,0 +1,46 @@
+package com.example.exemplo8;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity {
+
+
+    private TextView origem, destino, resultado;
+
+    private EditText c1, c2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        origem = findViewById(R.id.origem);
+        destino = findViewById(R.id.destino);
+        resultado = findViewById(R.id.resultado);
+        c1 = findViewById(R.id.textvalor);
+        c2 = findViewById(R.id.textcotacao);
+    }
+    public void troca(View v){
+        String origemAtual = origem.getText().toString();
+        origem.setText(destino.getText());
+        destino.setText(origemAtual);
+
+    }
+    public void converter(View v){
+        Double valor = Double.parseDouble(c1.getText().toString());
+        double cotacao = Double.parseDouble(c2.getText().toString());
+
+        if(origem.getText().equals("Dolar")){
+            double valorReal = valor * cotacao;
+            String result = String.format("%.2f", valorReal);
+            resultado.setText("Em R$:"+result);
+        }else{
+            double valorDolar = valor / cotacao;
+            String result = String.format("%.2f", valorDolar);
+            resultado.setText("Em R$:"+result);
+        }
+
+    }
